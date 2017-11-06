@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13241" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Athlete" representedClassName="Athlete" syncable="YES" codeGenerationType="category">
+    <entity name="Athlete" representedClassName="Athlete" syncable="YES">
         <attribute name="birthDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="eMail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" attributeType="String" syncable="YES"/>
@@ -9,28 +9,28 @@
         <attribute name="team" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="category">
+    <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="groupName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="groupStartTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="group" inverseEntity="Participant" syncable="YES"/>
-        <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="groups" inverseEntity="Race" syncable="YES"/>
+        <relationship name="race" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Race" inverseName="startingGroups" inverseEntity="Race" syncable="YES"/>
     </entity>
-    <entity name="Participant" representedClassName="Participant" parentEntity="Athlete" syncable="YES" codeGenerationType="category">
+    <entity name="Participant" representedClassName="Participant" parentEntity="Athlete" syncable="YES">
         <attribute name="participantEndTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="participantID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="participantStartTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="participants" inverseEntity="Group" syncable="YES"/>
     </entity>
-    <entity name="Race" representedClassName="Race" syncable="YES" codeGenerationType="category">
+    <entity name="Race" representedClassName="Race" syncable="YES">
         <attribute name="raceEndTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="raceName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="raceStartTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="race" inverseEntity="Group" syncable="YES"/>
+        <relationship name="startingGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="race" inverseEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-2" positionY="-63" width="128" height="148"/>
-        <element name="Group" positionX="-207" positionY="155" width="128" height="103"/>
-        <element name="Participant" positionX="-2" positionY="155" width="128" height="103"/>
-        <element name="Race" positionX="-209" positionY="-49" width="128" height="103"/>
+        <element name="Athlete" positionX="-2" positionY="-63" width="128" height="150"/>
+        <element name="Group" positionX="-207" positionY="155" width="128" height="105"/>
+        <element name="Participant" positionX="-2" positionY="155" width="128" height="105"/>
+        <element name="Race" positionX="-209" positionY="-49" width="128" height="105"/>
     </elements>
 </model>
