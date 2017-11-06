@@ -14,6 +14,11 @@
 		26265E911FAB417800C04239 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26265E8F1FAB417800C04239 /* LaunchScreen.storyboard */; };
 		26265E9C1FAB417800C04239 /* RedRace2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26265E9B1FAB417800C04239 /* RedRace2Tests.swift */; };
 		26265EA71FAB417800C04239 /* RedRace2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26265EA61FAB417800C04239 /* RedRace2UITests.swift */; };
+		26E5028C1FACB3CE00BC33CF /* AthletesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5028B1FACB3CE00BC33CF /* AthletesTableViewController.swift */; };
+		26E5028E1FAE0B1B00BC33CF /* Athlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5028D1FAE0B1B00BC33CF /* Athlete.swift */; };
+		26E502901FAE0B9400BC33CF /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5028F1FAE0B9400BC33CF /* Participant.swift */; };
+		26E502921FAE0BB600BC33CF /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E502911FAE0BB600BC33CF /* Group.swift */; };
+		26E502941FAE0BD900BC33CF /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E502931FAE0BD900BC33CF /* Race.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		26265EA21FAB417800C04239 /* RedRace2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedRace2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26265EA61FAB417800C04239 /* RedRace2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedRace2UITests.swift; sourceTree = "<group>"; };
 		26265EA81FAB417800C04239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26E5028B1FACB3CE00BC33CF /* AthletesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthletesTableViewController.swift; sourceTree = "<group>"; };
+		26E5028D1FAE0B1B00BC33CF /* Athlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athlete.swift; sourceTree = "<group>"; };
+		26E5028F1FAE0B9400BC33CF /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		26E502911FAE0BB600BC33CF /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		26E502931FAE0BD900BC33CF /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +107,17 @@
 		26265E821FAB417800C04239 /* RedRace2 */ = {
 			isa = PBXGroup;
 			children = (
+				26E5028B1FACB3CE00BC33CF /* AthletesTableViewController.swift */,
 				26265E831FAB417800C04239 /* AppDelegate.swift */,
 				26265E871FAB417800C04239 /* Main.storyboard */,
 				26265E8D1FAB417800C04239 /* Assets.xcassets */,
 				26265E8F1FAB417800C04239 /* LaunchScreen.storyboard */,
 				26265E921FAB417800C04239 /* Info.plist */,
 				26265E8A1FAB417800C04239 /* RedRace2.xcdatamodeld */,
+				26E502931FAE0BD900BC33CF /* Race.swift */,
+				26E502911FAE0BB600BC33CF /* Group.swift */,
+				26E5028F1FAE0B9400BC33CF /* Participant.swift */,
+				26E5028D1FAE0B1B00BC33CF /* Athlete.swift */,
 			);
 			path = RedRace2;
 			sourceTree = "<group>";
@@ -260,7 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				26265E8C1FAB417800C04239 /* RedRace2.xcdatamodeld in Sources */,
+				26E502941FAE0BD900BC33CF /* Race.swift in Sources */,
+				26E5028C1FACB3CE00BC33CF /* AthletesTableViewController.swift in Sources */,
+				26E502901FAE0B9400BC33CF /* Participant.swift in Sources */,
+				26E502921FAE0BB600BC33CF /* Group.swift in Sources */,
 				26265E841FAB417800C04239 /* AppDelegate.swift in Sources */,
+				26E5028E1FAE0B1B00BC33CF /* Athlete.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
