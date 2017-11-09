@@ -1,5 +1,5 @@
 //
-//  AthletesTableViewController.swift
+//  AthletesViewController.swift
 //  RedRace2
 //
 //  Created by Sandy Stehr on 03.11.17.
@@ -8,14 +8,18 @@
 
 import UIKit
 
-class AthletesTableViewController: UITableViewController {
+class AthletesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var athletesDictionary = [String: [String]]()
     var athleteSectionTitles = [String]()
     var athletes = [String]()
     
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         
         athletes = ["Audi", "Aston Martin","BMW", "Bugatti", "Bentley","Chevrolet", "Cadillac","Dodge","Ferrari", "Ford","Honda","Jaguar","Lamborghini","Mercedes", "Mazda","Nissan","Porsche","Rolls Royce","Toyota","Volkswagen"]
         
@@ -46,12 +50,12 @@ class AthletesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return athleteSectionTitles.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let athleteKey = athleteSectionTitles[section]
         if let athleteValues = athletesDictionary[athleteKey] {
             return athleteValues.count
@@ -61,7 +65,7 @@ class AthletesTableViewController: UITableViewController {
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
@@ -73,11 +77,11 @@ class AthletesTableViewController: UITableViewController {
         return cell
     }
  
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return athleteSectionTitles[section]
     }
     
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return athleteSectionTitles
     }
 

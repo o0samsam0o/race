@@ -1,59 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8tP-TA-gPW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="suA-gc-6z7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Athletes-->
-        <scene sceneID="cpb-SE-iFP">
+        <!--Home-->
+        <scene sceneID="DNp-dH-yxu">
             <objects>
-                <tableViewController id="cMb-OZ-3NQ" customClass="AthletesTableViewController" customModule="RedRace2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3ox-wN-JvA">
+                <viewController id="Xel-om-Npy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EZ1-0m-lMF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6K-gu-fGv">
+                                <rect key="frame" x="0.0" y="607" width="187.5" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ahJ-uA-B3h"/>
+                                </constraints>
+                                <state key="normal" title="Rennen"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Z2-s7-xXI">
+                                <rect key="frame" x="187" y="607" width="187.5" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Oxa-pF-z6M"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="3" height="0.0"/>
+                                <state key="normal" title="Athleten"/>
+                                <connections>
+                                    <segue destination="fjD-dd-E9J" kind="show" id="ZD2-Xi-Vl7"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="zQV-mN-M2S">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zQV-mN-M2S" id="D2b-Vl-xRb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="cMb-OZ-3NQ" id="96j-7D-AMS"/>
-                            <outlet property="delegate" destination="cMb-OZ-3NQ" id="gSn-9q-6xM"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Athletes" id="xiu-nX-UAq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1xB-cL-VNz"/>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HAj-uI-xnT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="6Z2-s7-xXI" firstAttribute="trailing" secondItem="EjS-Al-wjJ" secondAttribute="trailing" id="7tF-BX-ycf"/>
+                            <constraint firstItem="6Z2-s7-xXI" firstAttribute="width" secondItem="N6K-gu-fGv" secondAttribute="width" id="GU8-Rs-eXe"/>
+                            <constraint firstItem="6Z2-s7-xXI" firstAttribute="leading" secondItem="N6K-gu-fGv" secondAttribute="trailing" id="KG4-r9-rbG"/>
+                            <constraint firstItem="6Z2-s7-xXI" firstAttribute="bottom" secondItem="EjS-Al-wjJ" secondAttribute="bottom" id="TFC-xb-Ifs"/>
+                            <constraint firstItem="6Z2-s7-xXI" firstAttribute="height" secondItem="N6K-gu-fGv" secondAttribute="height" id="VrR-bz-ubR"/>
+                            <constraint firstItem="N6K-gu-fGv" firstAttribute="leading" secondItem="EjS-Al-wjJ" secondAttribute="leading" id="g7T-Q1-9JZ"/>
+                            <constraint firstItem="N6K-gu-fGv" firstAttribute="bottom" secondItem="EjS-Al-wjJ" secondAttribute="bottom" id="rM6-WV-uWJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EjS-Al-wjJ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" id="iyQ-Kb-uwB"/>
+                    <navigationItem key="navigationItem" id="2Yy-Ls-XJF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ao-26-jSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1019" y="214"/>
+            <point key="canvasLocation" x="454" y="652"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="K2t-wR-ZWI">
+        <!--Athleten-->
+        <scene sceneID="aBP-Ee-GJe">
             <objects>
-                <navigationController id="8tP-TA-gPW" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5A2-2t-98p">
+                <viewController id="fjD-dd-E9J" customClass="AthletesViewController" customModule="RedRace2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o5I-G5-yUP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Exp-ft-oEX">
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="a04-Zi-Ew2">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a04-Zi-Ew2" id="Uz1-WE-blx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6sf-fV-1ca">
+                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
+                                <segments>
+                                    <segment title="Alle"/>
+                                    <segment title="Nur ♀"/>
+                                    <segment title="Nur ♂"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="trailing" secondItem="uWo-Ax-5DA" secondAttribute="trailing" id="0un-3r-0xG"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="bottom" secondItem="uWo-Ax-5DA" secondAttribute="bottom" id="IyN-EQ-NJ9"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="top" secondItem="6sf-fV-1ca" secondAttribute="bottom" constant="8" id="TXQ-yb-eLt"/>
+                            <constraint firstItem="6sf-fV-1ca" firstAttribute="top" secondItem="uWo-Ax-5DA" secondAttribute="top" id="Wf0-ti-2Kn"/>
+                            <constraint firstItem="6sf-fV-1ca" firstAttribute="trailing" secondItem="uWo-Ax-5DA" secondAttribute="trailing" id="ajw-GW-Fgx"/>
+                            <constraint firstItem="6sf-fV-1ca" firstAttribute="leading" secondItem="uWo-Ax-5DA" secondAttribute="leading" id="g2m-vJ-Ral"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="top" secondItem="6sf-fV-1ca" secondAttribute="bottom" constant="8" id="hNL-pH-7ym"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="leading" secondItem="uWo-Ax-5DA" secondAttribute="leading" id="rZH-bg-JYR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uWo-Ax-5DA"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz"/>
+                    <connections>
+                        <outlet property="tableView" destination="Exp-ft-oEX" id="0cj-ra-mjW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vo5-X5-1V5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1234.4000000000001" y="654.42278860569718"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ASP-Gg-5Ab">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="suA-gc-6z7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="DrC-ZX-kBc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pkJ-pt-ha2">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="cMb-OZ-3NQ" kind="relationship" relationship="rootViewController" id="XcD-7k-Dji"/>
+                        <segue destination="Xel-om-Npy" kind="relationship" relationship="rootViewController" id="WLY-e9-aL3"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GrD-e5-qXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2j-3n-kSI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="65" y="214"/>
+            <point key="canvasLocation" x="-362" y="652"/>
         </scene>
     </scenes>
 </document>
