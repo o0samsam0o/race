@@ -99,8 +99,8 @@
 		26265E821FAB417800C04239 /* RedRace2 */ = {
 			isa = PBXGroup;
 			children = (
-				26E5028B1FACB3CE00BC33CF /* AthletesViewController.swift */,
 				26265E831FAB417800C04239 /* AppDelegate.swift */,
+				26E5028B1FACB3CE00BC33CF /* AthletesViewController.swift */,
 				26265E871FAB417800C04239 /* Main.storyboard */,
 				26265E8D1FAB417800C04239 /* Assets.xcassets */,
 				26265E8F1FAB417800C04239 /* LaunchScreen.storyboard */,

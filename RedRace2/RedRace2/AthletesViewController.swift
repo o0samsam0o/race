@@ -7,31 +7,26 @@
 //
 
 import UIKit
+import CoreData
 
-class AthletesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AthletesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     var athletesDictionary = [String: [String]]()
     var athleteSectionTitles = [String]()
-    var athletes = [String]()
+    //var athletes = [String]()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let moc = appDelegate.persistentContainer.viewContext
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        athletes = ["Audi", "Aston Martin","BMW", "Bugatti", "Bentley","Chevrolet", "Cadillac","Dodge","Ferrari", "Ford","Honda","Jaguar","Lamborghini","Mercedes", "Mazda","Nissan","Porsche","Rolls Royce","Toyota","Volkswagen"]
-        
-        for athlete in athletes {
-            let athleteKey = String(athlete.prefix(1))
-            if var athleteValues = athletesDictionary[athleteKey] {
-                athleteValues.append(athlete)
-                athletesDictionary[athleteKey] = athleteValues
-            } else {
-                athletesDictionary[athleteKey] = [athlete]
-            }
-        }
+        addAthletes(moc: moc)
+        printAthletes(moc: moc)
         
         athleteSectionTitles = [String](athletesDictionary.keys)
         athleteSectionTitles = athleteSectionTitles.sorted(by: { $0 < $1 })
@@ -42,7 +37,53 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    func addAthletes (moc: NSManagedObjectContext) {
+        let context = moc
+        let entity = NSEntityDescription.entity(forEntityName: "Athlete", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newUser.setValue("Sandy", forKey: "firstName")
+        newUser.setValue("Stehr", forKey: "lastName")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failure to save context: \(error)")
+        }
+    }
+    
+    func printAthletes (moc: NSManagedObjectContext) {
+        let context = moc
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Athlete")
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "firstName") as! String)
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
+        
+        //for athlete in athletes {
+         //   print("\(athlete.firstName!) \(athlete.lastName!)")
+            
+            //let athleteKey = String(athlete.prefix(1))
+            //if var athleteValues = athletesDictionary[athleteKey] {
+            //    athleteValues.append(athlete)
+            //    athletesDictionary[athleteKey] = athleteValues
+            //} else {
+            //    athletesDictionary[athleteKey] = [athlete]
+            //}
+        //}
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -129,5 +170,33 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
