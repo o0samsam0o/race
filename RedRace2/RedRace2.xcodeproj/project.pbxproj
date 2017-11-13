@@ -14,6 +14,16 @@
 		26265E911FAB417800C04239 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26265E8F1FAB417800C04239 /* LaunchScreen.storyboard */; };
 		26265E9C1FAB417800C04239 /* RedRace2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26265E9B1FAB417800C04239 /* RedRace2Tests.swift */; };
 		26265EA71FAB417800C04239 /* RedRace2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26265EA61FAB417800C04239 /* RedRace2UITests.swift */; };
+		26B7CB091FB9C11D00A9EEF0 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB011FB9C11D00A9EEF0 /* Group+CoreDataClass.swift */; };
+		26B7CB0A1FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB021FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift */; };
+		26B7CB0B1FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB031FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift */; };
+		26B7CB0C1FB9C11D00A9EEF0 /* Participant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB041FB9C11D00A9EEF0 /* Participant+CoreDataProperties.swift */; };
+		26B7CB0D1FB9C11D00A9EEF0 /* Athlete+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB051FB9C11D00A9EEF0 /* Athlete+CoreDataClass.swift */; };
+		26B7CB0E1FB9C11D00A9EEF0 /* Athlete+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB061FB9C11D00A9EEF0 /* Athlete+CoreDataProperties.swift */; };
+		26B7CB0F1FB9C11D00A9EEF0 /* Race+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB071FB9C11D00A9EEF0 /* Race+CoreDataClass.swift */; };
+		26B7CB101FB9C11D00A9EEF0 /* Race+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB081FB9C11D00A9EEF0 /* Race+CoreDataProperties.swift */; };
+		26B7CB161FB9CDD400A9EEF0 /* AthleteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB151FB9CDD400A9EEF0 /* AthleteData.swift */; };
+		26B7CB181FB9CF3E00A9EEF0 /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = 26B7CB171FB9CF3E00A9EEF0 /* Extensions */; };
 		26E5028C1FACB3CE00BC33CF /* AthletesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5028B1FACB3CE00BC33CF /* AthletesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +58,16 @@
 		26265EA21FAB417800C04239 /* RedRace2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedRace2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26265EA61FAB417800C04239 /* RedRace2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedRace2UITests.swift; sourceTree = "<group>"; };
 		26265EA81FAB417800C04239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26B7CB011FB9C11D00A9EEF0 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
+		26B7CB021FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		26B7CB031FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Participant+CoreDataClass.swift"; sourceTree = "<group>"; };
+		26B7CB041FB9C11D00A9EEF0 /* Participant+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Participant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		26B7CB051FB9C11D00A9EEF0 /* Athlete+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Athlete+CoreDataClass.swift"; sourceTree = "<group>"; };
+		26B7CB061FB9C11D00A9EEF0 /* Athlete+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Athlete+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		26B7CB071FB9C11D00A9EEF0 /* Race+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Race+CoreDataClass.swift"; sourceTree = "<group>"; };
+		26B7CB081FB9C11D00A9EEF0 /* Race+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Race+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		26B7CB151FB9CDD400A9EEF0 /* AthleteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteData.swift; sourceTree = "<group>"; };
+		26B7CB171FB9CF3E00A9EEF0 /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
 		26E5028B1FACB3CE00BC33CF /* AthletesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthletesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +119,9 @@
 		26265E821FAB417800C04239 /* RedRace2 */ = {
 			isa = PBXGroup;
 			children = (
+				26B7CB141FB9CD7F00A9EEF0 /* Example Data */,
+				26B7CB131FB9CD5200A9EEF0 /* Core Data */,
+				26B7CB171FB9CF3E00A9EEF0 /* Extensions */,
 				26265E831FAB417800C04239 /* AppDelegate.swift */,
 				26E5028B1FACB3CE00BC33CF /* AthletesViewController.swift */,
 				26265E871FAB417800C04239 /* Main.storyboard */,
@@ -126,6 +149,29 @@
 				26265EA81FAB417800C04239 /* Info.plist */,
 			);
 			path = RedRace2UITests;
+			sourceTree = "<group>";
+		};
+		26B7CB131FB9CD5200A9EEF0 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				26B7CB011FB9C11D00A9EEF0 /* Group+CoreDataClass.swift */,
+				26B7CB021FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift */,
+				26B7CB031FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift */,
+				26B7CB041FB9C11D00A9EEF0 /* Participant+CoreDataProperties.swift */,
+				26B7CB051FB9C11D00A9EEF0 /* Athlete+CoreDataClass.swift */,
+				26B7CB061FB9C11D00A9EEF0 /* Athlete+CoreDataProperties.swift */,
+				26B7CB071FB9C11D00A9EEF0 /* Race+CoreDataClass.swift */,
+				26B7CB081FB9C11D00A9EEF0 /* Race+CoreDataProperties.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		26B7CB141FB9CD7F00A9EEF0 /* Example Data */ = {
+			isa = PBXGroup;
+			children = (
+				26B7CB151FB9CDD400A9EEF0 /* AthleteData.swift */,
+			);
+			path = "Example Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +283,7 @@
 			files = (
 				26265E911FAB417800C04239 /* LaunchScreen.storyboard in Resources */,
 				26265E8E1FAB417800C04239 /* Assets.xcassets in Resources */,
+				26B7CB181FB9CF3E00A9EEF0 /* Extensions in Resources */,
 				26265E891FAB417800C04239 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +309,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26B7CB0F1FB9C11D00A9EEF0 /* Race+CoreDataClass.swift in Sources */,
 				26265E8C1FAB417800C04239 /* RedRace2.xcdatamodeld in Sources */,
+				26B7CB0D1FB9C11D00A9EEF0 /* Athlete+CoreDataClass.swift in Sources */,
+				26B7CB091FB9C11D00A9EEF0 /* Group+CoreDataClass.swift in Sources */,
+				26B7CB0E1FB9C11D00A9EEF0 /* Athlete+CoreDataProperties.swift in Sources */,
+				26B7CB161FB9CDD400A9EEF0 /* AthleteData.swift in Sources */,
+				26B7CB0A1FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift in Sources */,
+				26B7CB0C1FB9C11D00A9EEF0 /* Participant+CoreDataProperties.swift in Sources */,
+				26B7CB101FB9C11D00A9EEF0 /* Race+CoreDataProperties.swift in Sources */,
 				26E5028C1FACB3CE00BC33CF /* AthletesViewController.swift in Sources */,
 				26265E841FAB417800C04239 /* AppDelegate.swift in Sources */,
+				26B7CB0B1FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

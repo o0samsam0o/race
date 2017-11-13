@@ -10,27 +10,20 @@ import UIKit
 import CoreData
 
 class AthletesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
-
-    var athletesDictionary = [String: [String]]()
-    var athleteSectionTitles = [String]()
-    //var athletes = [String]()
+    
+    private var athletes = [Athlete]()
+    
+    private var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let moc = appDelegate.persistentContainer.viewContext
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        addAthletes(moc: moc)
-        printAthletes(moc: moc)
-        
-        athleteSectionTitles = [String](athletesDictionary.keys)
-        athleteSectionTitles = athleteSectionTitles.sorted(by: { $0 < $1 })
-
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -38,50 +31,21 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func addAthletes (moc: NSManagedObjectContext) {
-        let context = moc
-        let entity = NSEntityDescription.entity(forEntityName: "Athlete", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        
-        newUser.setValue("Sandy", forKey: "firstName")
-        newUser.setValue("Stehr", forKey: "lastName")
-        
-        do {
-            try context.save()
-        } catch {
-            print("Failure to save context: \(error)")
+    func printAthletes () {
+        for athlete in athletes {
+            print("\(athlete.firstName!) \(athlete.lastName!)")
         }
     }
     
-    func printAthletes (moc: NSManagedObjectContext) {
-        let context = moc
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Athlete")
-        //request.predicate = NSPredicate(format: "age = %@", "12")
-        request.returnsObjectsAsFaults = false
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "firstName") as! String)
-            }
-            
-        } catch {
-            
-            print("Failed")
+            athletes = try context.fetch(Athlete.fetchRequest())
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
         
-        //for athlete in athletes {
-         //   print("\(athlete.firstName!) \(athlete.lastName!)")
-            
-            //let athleteKey = String(athlete.prefix(1))
-            //if var athleteValues = athletesDictionary[athleteKey] {
-            //    athleteValues.append(athlete)
-            //    athletesDictionary[athleteKey] = athleteValues
-            //} else {
-            //    athletesDictionary[athleteKey] = [athlete]
-            //}
-        //}
+        //printAthletes()
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,16 +57,11 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return athleteSectionTitles.count
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let athleteKey = athleteSectionTitles[section]
-        if let athleteValues = athletesDictionary[athleteKey] {
-            return athleteValues.count
-        }
-        
-        return 0
+        return athletes.count
     }
 
     
@@ -110,22 +69,10 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
-     let athleteKey = athleteSectionTitles[indexPath.section]
-     if let athleteValues = athletesDictionary[athleteKey] {
-     cell.textLabel?.text = athleteValues[indexPath.row]
-     }
-     
+     cell.textLabel?.text = athletes[indexPath.row].firstName
         return cell
     }
  
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return athleteSectionTitles[section]
-    }
-    
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return athleteSectionTitles
-    }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
