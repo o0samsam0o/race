@@ -14,6 +14,7 @@
 		26265E911FAB417800C04239 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26265E8F1FAB417800C04239 /* LaunchScreen.storyboard */; };
 		26265E9C1FAB417800C04239 /* RedRace2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26265E9B1FAB417800C04239 /* RedRace2Tests.swift */; };
 		26265EA71FAB417800C04239 /* RedRace2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26265EA61FAB417800C04239 /* RedRace2UITests.swift */; };
+		26AA28531FBA3CED001D6750 /* AthleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AA28521FBA3CED001D6750 /* AthleteCell.swift */; };
 		26B7CB091FB9C11D00A9EEF0 /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB011FB9C11D00A9EEF0 /* Group+CoreDataClass.swift */; };
 		26B7CB0A1FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB021FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift */; };
 		26B7CB0B1FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B7CB031FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift */; };
@@ -60,6 +61,7 @@
 		26265EA21FAB417800C04239 /* RedRace2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedRace2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26265EA61FAB417800C04239 /* RedRace2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedRace2UITests.swift; sourceTree = "<group>"; };
 		26265EA81FAB417800C04239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26AA28521FBA3CED001D6750 /* AthleteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteCell.swift; sourceTree = "<group>"; };
 		26B7CB011FB9C11D00A9EEF0 /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataClass.swift"; sourceTree = "<group>"; };
 		26B7CB021FB9C11D00A9EEF0 /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		26B7CB031FB9C11D00A9EEF0 /* Participant+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Participant+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		26265E821FAB417800C04239 /* RedRace2 */ = {
 			isa = PBXGroup;
 			children = (
+				26AA28511FBA3C9D001D6750 /* Cells */,
 				26B7CB191FB9D07900A9EEF0 /* Extensions */,
 				26B7CB141FB9CD7F00A9EEF0 /* Example Data */,
 				26B7CB131FB9CD5200A9EEF0 /* Core Data */,
@@ -153,6 +156,14 @@
 				26265EA81FAB417800C04239 /* Info.plist */,
 			);
 			path = RedRace2UITests;
+			sourceTree = "<group>";
+		};
+		26AA28511FBA3C9D001D6750 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				26AA28521FBA3CED001D6750 /* AthleteCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		26B7CB131FB9CD5200A9EEF0 /* Core Data */ = {
@@ -325,6 +336,7 @@
 				26B7CB1F1FB9D8CE00A9EEF0 /* Int+Extension.swift in Sources */,
 				26B7CB0F1FB9C11D00A9EEF0 /* Race+CoreDataClass.swift in Sources */,
 				26265E8C1FAB417800C04239 /* RedRace2.xcdatamodeld in Sources */,
+				26AA28531FBA3CED001D6750 /* AthleteCell.swift in Sources */,
 				26B7CB1B1FB9D86200A9EEF0 /* Date+Extension.swift in Sources */,
 				26B7CB0D1FB9C11D00A9EEF0 /* Athlete+CoreDataClass.swift in Sources */,
 				26B7CB091FB9C11D00A9EEF0 /* Group+CoreDataClass.swift in Sources */,
