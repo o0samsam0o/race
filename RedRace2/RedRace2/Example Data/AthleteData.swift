@@ -16,7 +16,7 @@ class AthleteData {
     
     private let firstNames = ["Amaya", "Noe", "Julius", "Carolina", "Aria", "Meghan", "Braylon", "Celia", "Alijah", "Mathew", "Diego", "Arely", "Stacy", "Mareli", "Brendan", "Harrison", "Olive", "Litzy", "Deven", "Lilliana", "Liam", "Kenley", "Hana", "Devin", "Ali", "Judah", "Carlee", "Fletcher", "Maleah", "Jayla", "Beckham", "Leonidas", "Kyra", "Finnegan", "Genevieve", "Vivian", "Kristin", "Janet", "Alison", "Howard", "Frank", "Ignacio", "Elizabeth", "Zion", "Journey", "Vaughn", "Mateo", "Bridger", "Jaxson", "Mikayla"]
     private let lastNames = ["Bridges", "Winters", "Clements", "Roberts", "Gordon", "Yoder", "Romero", "Acevedo", "Becker", "Calderon", "Wu", "Cervantes", "Meza", "Stephens", "Hogan", "Robles", "Stokes", "Mckee", "Navarro", "Bradley", "Clayton", "Martin", "Harrell", "Hess", "Hamilton", "Cortez", "Nash", "Wright", "Sawyer", "Thornton", "Avila", "Gill", "Calhoun", "Warner", "Morales", "Bender", "Petty", "Cunningham", "Glenn", "Padilla", "Grant", "Hooper", "Marshall", "Barber", "Poole", "Carrillo", "Richardson", "Johnson", "Esparza", "Vang"]
-    private let genderNames = ["maennlich", "weiblich"]
+    private let genderNames = ["♂", "♀"]
     
     init() {
         // Random name
@@ -29,7 +29,7 @@ class AthleteData {
         lastName = last
         gender = genderNames [Int(arc4random_uniform(UInt32(genderNames.count)))].lowercased()
         // Random DOb
-        dob =  Date().random(unit: Calendar.Component.year, from: -10, upto: -90)!
+        dob =  Date().random(unit: Calendar.Component.year, from: -7, upto: -75)!
     }
 }
 

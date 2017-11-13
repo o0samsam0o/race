@@ -33,7 +33,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func addAthletes () {
-        for _ in 0...20 {
+        for _ in 0...100 {
             let data = AthleteData()
             let athlete = Athlete(entity: Athlete.entity(), insertInto: context)
             athlete.firstName = data.firstName
@@ -52,11 +52,32 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func deleteRecords() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Athlete")
+
+        let result = try? context.fetch(fetchRequest)
+        let resultData = result as! [Athlete]
+        
+        for object in resultData {
+            context.delete(object)
+        }
+        
+        do {
+            try context.save()
+            print("saved!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        } catch {
+            
+        }
+    }
+
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresh()
-        
+        //deleteRecords()
         //addAthletes()
+        refresh()
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,8 +103,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // Configure the cell...
         cell.nameLabel.text = athletes[indexPath.row].firstName! + " " + athletes[indexPath.row].lastName!
         
-        let dob = Calendar.current.date(from: DateComponents(year: 1970, month: 9, day: 10))!
-        cell.ageLabel.text = "\(dob.age)"
+        cell.ageLabel.text = "\(athletes[indexPath.row].age)"
         cell.genderLabel.text = athletes[indexPath.row].gender ?? ""
         return cell
     }
