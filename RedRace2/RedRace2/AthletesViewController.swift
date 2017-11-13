@@ -37,6 +37,18 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func addAthletes () {
+        for index in 0...20 {
+            let data = AthleteData()
+            let athlete = Athlete(entity: Athlete.entity(), insertInto: context)
+            athlete.firstName = data.firstName
+            athlete.lastName = data.lastName
+            athlete.birthDate = data.dob as NSDate
+            athlete.gender = data.gender
+            appDelegate.saveContext()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         do {
@@ -45,6 +57,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         
+        //addAthletes()
         //printAthletes()
     }
     
@@ -69,7 +82,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
-     cell.textLabel?.text = athletes[indexPath.row].firstName
+        cell.textLabel?.text = athletes[indexPath.row].firstName! + " " + athletes[indexPath.row].lastName!
         return cell
     }
  
