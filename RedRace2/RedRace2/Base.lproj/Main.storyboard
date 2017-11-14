@@ -66,7 +66,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Exp-ft-oEX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Exp-ft-oEX">
                                 <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -77,27 +77,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ8-bH-6zq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ8-bH-6zq">
                                                     <rect key="frame" x="245" y="0.0" width="42" height="21"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ageLabel"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="42" id="y22-Fx-btf"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="y22-Fx-btf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWG-R2-KtD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWG-R2-KtD">
                                                     <rect key="frame" x="300" y="0.0" width="62" height="21"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="genderLabel"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="62" id="Wc8-IK-eQ1"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="Wc8-IK-eQ1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wq-3a-ezt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wq-3a-ezt">
                                                     <rect key="frame" x="13" y="0.0" width="224" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -105,8 +105,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="leading" secondItem="Uz1-WE-blx" secondAttribute="leadingMargin" constant="-3" id="2QS-o6-UdO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yWG-R2-KtD" secondAttribute="trailing" constant="-3" id="CAR-fM-5EI"/>
+                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="leading" secondItem="Uz1-WE-blx" secondAttribute="leadingMargin" constant="-2" id="2QS-o6-UdO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yWG-R2-KtD" secondAttribute="trailing" constant="-2" id="CAR-fM-5EI"/>
                                                 <constraint firstItem="dJ8-bH-6zq" firstAttribute="baseline" secondItem="yWG-R2-KtD" secondAttribute="baseline" id="bWv-Zd-yOn"/>
                                                 <constraint firstItem="dJ8-bH-6zq" firstAttribute="leading" secondItem="8Wq-3a-ezt" secondAttribute="trailing" constant="8" symbolic="YES" id="cLy-GW-0ie"/>
                                                 <constraint firstItem="8Wq-3a-ezt" firstAttribute="top" secondItem="Uz1-WE-blx" secondAttribute="top" id="ib7-Mo-cd6"/>
@@ -130,6 +130,9 @@
                                     <segment title="Nur ♀"/>
                                     <segment title="Nur ♂"/>
                                 </segments>
+                                <connections>
+                                    <action selector="sortAthletes:" destination="fjD-dd-E9J" eventType="valueChanged" id="9O7-r9-aGB"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -146,6 +149,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz"/>
                     <connections>
+                        <outlet property="sortAthletesControl" destination="6sf-fV-1ca" id="Pn9-fR-MYa"/>
                         <outlet property="tableView" destination="Exp-ft-oEX" id="0cj-ra-mjW"/>
                     </connections>
                 </viewController>

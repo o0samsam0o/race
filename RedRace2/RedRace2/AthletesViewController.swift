@@ -14,10 +14,14 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     private var fetchedRC: NSFetchedResultsController<Athlete>!
     @IBOutlet weak var tableView: UITableView!
     
+    private var sortType = "all"
+    
     private var athletes = [Athlete]()
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +88,18 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func sortAthletes(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            sortType = "all"
+        }else if sender.selectedSegmentIndex == 1 {
+            sortType = "female"
+        }else if sender.selectedSegmentIndex == 2 {
+            sortType = "male"
+        }
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -108,41 +123,61 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
  
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if sortType == "all" {
+            return nil
+        }else if sortType == "female" {
+            if let sectionInfo = fetchedResultsController.sections?[section] {
+                let borrowObjects = sectionInfo.objects
+                if let borrowItem = borrowObjects?.first as? BorrowItem {
+                    if let personObject = borrowItem.person {
+                        return personObject.name
+                    }
+                }
+            }
+        }
+        
+        return nil
+        
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    // MARK: - Fetched results controller
+    
+    var fetchedResultsController: NSFetchedResultsController<Athlete> {
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
+        
+        let fetchRequest: NSFetchRequest<Athlete> = Athlete.fetchRequest()
+        
+        // Set the batch size to a suitable number.
+        fetchRequest.fetchBatchSize = 20
+        
+        // Edit the sort key as appropriate.
+        let sortDescriptor = NSSortDescriptor(key: "gender", ascending: false)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "athlete.lastName", cacheName: "Master")
+        aFetchedResultsController.delegate = self
+        _fetchedResultsController = aFetchedResultsController
+        
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController!
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    var _fetchedResultsController: NSFetchedResultsController<Athlete>? = nil
     /*
     // MARK: - Navigation
 
