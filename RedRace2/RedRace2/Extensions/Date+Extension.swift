@@ -97,6 +97,10 @@ extension Date {
         return date
     }
     
+    var age: Int {
+        return Calendar.current.dateComponents([.year], from: self, to: Date()).year!
+    }
+    
     func isLeapYear() -> Bool {
         let calendar  = Calendar(identifier: Calendar.Identifier.gregorian)
         let comps = calendar.dateComponents([.year], from: self)

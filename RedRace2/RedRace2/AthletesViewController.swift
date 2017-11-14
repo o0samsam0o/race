@@ -11,12 +11,13 @@ import CoreData
 
 class AthletesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
+    private var fetchedRC: NSFetchedResultsController<Athlete>!
+    @IBOutlet weak var tableView: UITableView!
+    
     private var athletes = [Athlete]()
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +32,8 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func printAthletes () {
-        for athlete in athletes {
-            print("\(athlete.firstName!) \(athlete.lastName!)")
-        }
-    }
-    
     func addAthletes () {
-        for index in 0...20 {
+        for _ in 0...100 {
             let data = AthleteData()
             let athlete = Athlete(entity: Athlete.entity(), insertInto: context)
             athlete.firstName = data.firstName
@@ -49,16 +44,40 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    fileprivate func refresh() {
         do {
             athletes = try context.fetch(Athlete.fetchRequest())
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
+    }
+    
+    func deleteRecords() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Athlete")
+
+        let result = try? context.fetch(fetchRequest)
+        let resultData = result as! [Athlete]
         
+        for object in resultData {
+            context.delete(object)
+        }
+        
+        do {
+            try context.save()
+            print("saved!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        } catch {
+            
+        }
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //deleteRecords()
         //addAthletes()
-        //printAthletes()
+        refresh()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,10 +98,13 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AthleteCell
 
         // Configure the cell...
-        cell.textLabel?.text = athletes[indexPath.row].firstName! + " " + athletes[indexPath.row].lastName!
+        cell.nameLabel.text = athletes[indexPath.row].firstName! + " " + athletes[indexPath.row].lastName!
+        
+        cell.ageLabel.text = "\(athletes[indexPath.row].age)"
+        cell.genderLabel.text = athletes[indexPath.row].gender ?? ""
         return cell
     }
  

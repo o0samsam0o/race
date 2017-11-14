@@ -12,5 +12,10 @@ import CoreData
 
 
 public class Athlete: NSManagedObject {
-
+    var age: Int {
+        if let dob = birthDate as Date? {
+            return Calendar.current.dateComponents([.year], from: dob, to: Date()).year!
+        }
+        return 0
+    }
 }
