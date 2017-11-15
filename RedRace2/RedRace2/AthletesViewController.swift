@@ -13,7 +13,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var sortType = "all"
+    private var filterType = "all"
     private var athletes: NSFetchedResultsController<Athlete>!
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -36,11 +36,11 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         let request = Athlete.fetchRequest() as NSFetchRequest<Athlete>
         
         //let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
-        if sortType == "all" {
+        if filterType == "all" {
             
-        } else if sortType == "female" {
+        } else if filterType == "female" {
             request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♀")
-        } else if sortType == "male" {
+        } else if filterType == "male" {
             request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
         }
         
@@ -70,11 +70,11 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func sortAthletes(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            sortType = "all"
+            filterType = "all"
         }else if sender.selectedSegmentIndex == 1 {
-            sortType = "female"
+            filterType = "female"
         }else if sender.selectedSegmentIndex == 2 {
-            sortType = "male"
+            filterType = "male"
         }
         
         refetch()
@@ -114,6 +114,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
     
     //MARK - Add or delete some Testdata
     
