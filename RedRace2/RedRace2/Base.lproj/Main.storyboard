@@ -131,7 +131,7 @@
                                     <segment title="Nur ♂"/>
                                 </segments>
                                 <connections>
-                                    <action selector="sortAthletes:" destination="fjD-dd-E9J" eventType="valueChanged" id="9O7-r9-aGB"/>
+                                    <action selector="sortAthletes:" destination="fjD-dd-E9J" eventType="valueChanged" id="VvG-wn-z1t"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -149,7 +149,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz"/>
                     <connections>
-                        <outlet property="sortAthletesControl" destination="6sf-fV-1ca" id="Pn9-fR-MYa"/>
                         <outlet property="tableView" destination="Exp-ft-oEX" id="0cj-ra-mjW"/>
                     </connections>
                 </viewController>

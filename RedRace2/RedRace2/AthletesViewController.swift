@@ -11,17 +11,13 @@ import CoreData
 
 class AthletesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
-    private var fetchedRC: NSFetchedResultsController<Athlete>!
     @IBOutlet weak var tableView: UITableView!
     
     private var sortType = "all"
-    
-    private var athletes = [Athlete]()
+    private var athletes: NSFetchedResultsController<Athlete>!
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +32,91 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    fileprivate func refetch() {
+        let request = Athlete.fetchRequest() as NSFetchRequest<Athlete>
+        
+        //let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
+        if sortType == "all" {
+            
+        } else if sortType == "female" {
+            request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♀")
+        } else if sortType == "male" {
+            request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
+        }
+        
+        
+        let sort = NSSortDescriptor(key: #keyPath(Athlete.lastName), ascending:true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        request.sortDescriptors = [sort]
+        
+        do {
+            athletes = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            try athletes.performFetch()
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //deleteAllRecords()
+        //addAthletes()
+        refetch()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func sortAthletes(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            sortType = "all"
+        }else if sender.selectedSegmentIndex == 1 {
+            sortType = "female"
+        }else if sender.selectedSegmentIndex == 2 {
+            sortType = "male"
+        }
+        
+        refetch()
+        tableView.reloadData()
+    }
+    
+    // MARK: - Table view data source
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return athletes.fetchedObjects!.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AthleteCell else {
+            fatalError("Unexpected Index Path")
+        }
+        let athlete = athletes.object(at: indexPath)
+        
+        // Configure the cell...
+        cell.nameLabel.text = athlete.firstName! + " " + athlete.lastName!
+        cell.ageLabel.text = "\(athlete.age)"
+        cell.genderLabel.text = athlete.gender 
+        return cell
+    }
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    //MARK - Add or delete some Testdata
+    
     func addAthletes () {
         for _ in 0...100 {
             let data = AthleteData()
@@ -48,17 +129,9 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    fileprivate func refresh() {
-        do {
-            athletes = try context.fetch(Athlete.fetchRequest())
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
-    
-    func deleteRecords() {
+    func deleteAllRecords() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Athlete")
-
+        
         let result = try? context.fetch(fetchRequest)
         let resultData = result as! [Athlete]
         
@@ -75,145 +148,5 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             
         }
     }
-
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //deleteRecords()
-        //addAthletes()
-        refresh()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func sortAthletes(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            sortType = "all"
-        }else if sender.selectedSegmentIndex == 1 {
-            sortType = "female"
-        }else if sender.selectedSegmentIndex == 2 {
-            sortType = "male"
-        }
-        tableView.reloadData()
-    }
-    
-    // MARK: - Table view data source
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return athletes.count
-    }
-
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AthleteCell
-
-        // Configure the cell...
-        cell.nameLabel.text = athletes[indexPath.row].firstName! + " " + athletes[indexPath.row].lastName!
-        
-        cell.ageLabel.text = "\(athletes[indexPath.row].age)"
-        cell.genderLabel.text = athletes[indexPath.row].gender ?? ""
-        return cell
-    }
- 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if sortType == "all" {
-            return nil
-        }else if sortType == "female" {
-            if let sectionInfo = fetchedResultsController.sections?[section] {
-                let borrowObjects = sectionInfo.objects
-                if let borrowItem = borrowObjects?.first as? BorrowItem {
-                    if let personObject = borrowItem.person {
-                        return personObject.name
-                    }
-                }
-            }
-        }
-        
-        return nil
-        
-    }
-
-    // MARK: - Fetched results controller
-    
-    var fetchedResultsController: NSFetchedResultsController<Athlete> {
-        if _fetchedResultsController != nil {
-            return _fetchedResultsController!
-        }
-        
-        let fetchRequest: NSFetchRequest<Athlete> = Athlete.fetchRequest()
-        
-        // Set the batch size to a suitable number.
-        fetchRequest.fetchBatchSize = 20
-        
-        // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "gender", ascending: false)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "athlete.lastName", cacheName: "Master")
-        aFetchedResultsController.delegate = self
-        _fetchedResultsController = aFetchedResultsController
-        
-        do {
-            try _fetchedResultsController!.performFetch()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
-        
-        return _fetchedResultsController!
-    }
-
-    var _fetchedResultsController: NSFetchedResultsController<Athlete>? = nil
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

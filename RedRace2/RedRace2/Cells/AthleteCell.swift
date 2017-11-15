@@ -14,4 +14,5 @@ class AthleteCell: UITableViewCell {
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
 
+
 }
