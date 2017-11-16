@@ -70,55 +70,52 @@
                                 <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="30" id="a04-Zi-Ew2" customClass="AthleteCell" customModule="RedRace2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="30"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="o8l-1Q-qmy" customClass="AthleteCell" customModule="RedRace2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a04-Zi-Ew2" id="Uz1-WE-blx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o8l-1Q-qmy" id="hfO-ci-CsD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ8-bH-6zq">
-                                                    <rect key="frame" x="245" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="261" y="14" width="42" height="21"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="ageLabel"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="y22-Fx-btf"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWG-R2-KtD">
-                                                    <rect key="frame" x="300" y="0.0" width="62" height="21"/>
+                                                    <rect key="frame" x="323" y="14" width="42" height="21"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="genderLabel"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="62" id="Wc8-IK-eQ1"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wq-3a-ezt">
-                                                    <rect key="frame" x="13" y="0.0" width="224" height="21"/>
+                                                    <rect key="frame" x="25" y="14" width="226" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="leading" secondItem="Uz1-WE-blx" secondAttribute="leadingMargin" constant="-2" id="2QS-o6-UdO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yWG-R2-KtD" secondAttribute="trailing" constant="-2" id="CAR-fM-5EI"/>
-                                                <constraint firstItem="dJ8-bH-6zq" firstAttribute="baseline" secondItem="yWG-R2-KtD" secondAttribute="baseline" id="bWv-Zd-yOn"/>
-                                                <constraint firstItem="dJ8-bH-6zq" firstAttribute="leading" secondItem="8Wq-3a-ezt" secondAttribute="trailing" constant="8" symbolic="YES" id="cLy-GW-0ie"/>
-                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="top" secondItem="Uz1-WE-blx" secondAttribute="top" id="ib7-Mo-cd6"/>
-                                                <constraint firstItem="yWG-R2-KtD" firstAttribute="leading" secondItem="dJ8-bH-6zq" secondAttribute="trailing" constant="13" id="qbe-JN-exx"/>
-                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="baseline" secondItem="dJ8-bH-6zq" secondAttribute="baseline" id="xCq-BS-oY7"/>
+                                                <constraint firstAttribute="bottom" secondItem="yWG-R2-KtD" secondAttribute="bottom" constant="14.5" id="6FJ-Fk-d7Q"/>
+                                                <constraint firstItem="yWG-R2-KtD" firstAttribute="top" secondItem="hfO-ci-CsD" secondAttribute="top" constant="14" id="87S-xF-oqz"/>
+                                                <constraint firstItem="yWG-R2-KtD" firstAttribute="leading" secondItem="dJ8-bH-6zq" secondAttribute="trailing" constant="20" id="C3s-hA-QlZ"/>
+                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="leading" secondItem="hfO-ci-CsD" secondAttribute="leadingMargin" constant="10" id="EDD-Lo-wmD"/>
+                                                <constraint firstItem="8Wq-3a-ezt" firstAttribute="top" secondItem="hfO-ci-CsD" secondAttribute="topMargin" constant="3" id="FWL-fI-jF8"/>
+                                                <constraint firstItem="dJ8-bH-6zq" firstAttribute="top" secondItem="hfO-ci-CsD" secondAttribute="topMargin" constant="3" id="Xvb-vf-4cC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8Wq-3a-ezt" secondAttribute="bottom" constant="4" id="c4c-Xy-4xY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dJ8-bH-6zq" secondAttribute="bottom" constant="4" id="hEk-3U-VXN"/>
+                                                <constraint firstItem="dJ8-bH-6zq" firstAttribute="leading" secondItem="8Wq-3a-ezt" secondAttribute="trailing" constant="10" id="mPX-Wq-TRT"/>
+                                                <constraint firstAttribute="trailing" secondItem="yWG-R2-KtD" secondAttribute="trailing" constant="10" id="wUo-No-zY9"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="Cell"/>
                                         <connections>
-                                            <outlet property="ageLabel" destination="dJ8-bH-6zq" id="tuZ-Cs-hcJ"/>
-                                            <outlet property="genderLabel" destination="yWG-R2-KtD" id="1fB-vU-672"/>
-                                            <outlet property="nameLabel" destination="8Wq-3a-ezt" id="8RW-xa-msM"/>
-                                            <segue destination="YsD-MU-XtI" kind="show" id="0Np-qs-E36"/>
+                                            <outlet property="ageLabel" destination="dJ8-bH-6zq" id="6NR-93-bpy"/>
+                                            <outlet property="genderLabel" destination="yWG-R2-KtD" id="gv1-cf-Pag"/>
+                                            <outlet property="nameLabel" destination="8Wq-3a-ezt" id="XQa-Yi-zUY"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
