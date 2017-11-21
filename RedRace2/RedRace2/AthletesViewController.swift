@@ -31,7 +31,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        fetchData()
+
     }
     
     fileprivate func fetchData() {
@@ -45,7 +45,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         } else if filterType == "male" {
             request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
         }
-        
         
         let sort = NSSortDescriptor(key: #keyPath(Athlete.lastName), ascending:true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
         request.sortDescriptors = [sort]
@@ -65,6 +64,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         //deleteAllRecords()
         //addAthletes()
+        fetchData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,19 +93,22 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.fetchedObjects!.count
+        guard let athletes = fetchedResultsController.fetchedObjects else {return 0}
+        return athletes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AthleteCell else {
             fatalError("Unexpected Index Path")
         }
-        let athlete = fetchedResultsController.object(at: indexPath)
+        
+         let athlete = fetchedResultsController.object(at: indexPath)
         
         // Configure the cell...
         cell.nameLabel.text = athlete.firstName! + " " + athlete.lastName!
         cell.ageLabel.text = "\(athlete.age)"
-        cell.genderLabel.text = athlete.gender 
+        cell.genderLabel.text = athlete.gender
+        
         return cell
     }
     
@@ -131,15 +134,16 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     //MARK - Add or delete some Testdata
-    /*
+    
     func addAthletes () {
-        for _ in 0...100 {
+        for _ in 0...9 {
             let data = AthleteData()
             let athlete = Athlete(entity: Athlete.entity(), insertInto: context)
             athlete.firstName = data.firstName
             athlete.lastName = data.lastName
             athlete.birthDate = data.dob as NSDate
             athlete.gender = data.gender
+            athlete.id = data.id
             appDelegate.saveContext()
         }
     }
@@ -157,11 +161,12 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         do {
             try context.save()
             print("saved!")
+            tableView.reloadData()
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         } catch {
             
         }
     }
-    */
+    
 }

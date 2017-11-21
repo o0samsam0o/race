@@ -23,5 +23,5 @@ extension Athlete {
     @NSManaged public var gender: String?
     @NSManaged public var lastName: String?
     @NSManaged public var weight: NSDecimalNumber?
-
+    @NSManaged public var id: String?
 }
