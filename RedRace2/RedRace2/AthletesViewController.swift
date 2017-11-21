@@ -14,7 +14,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     private var filterType = "all"
-    private var athletes: NSFetchedResultsController<Athlete>!
+    private var fetchedResultsController: NSFetchedResultsController<Athlete>!
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -30,9 +30,10 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        fetchData()
     }
     
-    fileprivate func refetch() {
+    fileprivate func fetchData() {
         let request = Athlete.fetchRequest() as NSFetchRequest<Athlete>
         
         //let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
@@ -49,8 +50,8 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         request.sortDescriptors = [sort]
         
         do {
-            athletes = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-            try athletes.performFetch()
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            try fetchedResultsController.performFetch()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -60,7 +61,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         //deleteAllRecords()
         //addAthletes()
-        refetch()
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,7 +77,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             filterType = "male"
         }
         
-        refetch()
+        fetchData()
         tableView.reloadData()
     }
     
@@ -89,14 +89,14 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return athletes.fetchedObjects!.count
+        return fetchedResultsController.fetchedObjects!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? AthleteCell else {
             fatalError("Unexpected Index Path")
         }
-        let athlete = athletes.object(at: indexPath)
+        let athlete = fetchedResultsController.object(at: indexPath)
         
         // Configure the cell...
         cell.nameLabel.text = athlete.firstName! + " " + athlete.lastName!
@@ -104,6 +104,13 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.genderLabel.text = athlete.gender 
         return cell
     }
+    
+    
+    
+    
+    
+    
+    
     
     /*
     // MARK: - Navigation
@@ -117,7 +124,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     //MARK - Add or delete some Testdata
-    
+    /*
     func addAthletes () {
         for _ in 0...100 {
             let data = AthleteData()
@@ -149,5 +156,5 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             
         }
     }
-
+    */
 }
