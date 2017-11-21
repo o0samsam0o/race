@@ -85,7 +85,9 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
-    // MARK: - Table view data source
+    @IBAction func saveAthleteDetails(_ sender: UIStoryboardSegue) {
+
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -125,9 +127,12 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "showAthleteDetailSegue" {
-                let advc = segue.destination as! AthleteDetailViewController
-                advc.athlete = athlete
+            if let navigationController = segue.destination as? UINavigationController {
+                let athleteDetailViewController = navigationController.topViewController as! AthleteDetailViewController
+                athleteDetailViewController.athlete = athlete
+            }
         }
     }
     

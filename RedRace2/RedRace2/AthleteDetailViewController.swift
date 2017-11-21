@@ -17,8 +17,8 @@ class AthleteDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(athlete ?? "nix drin")
-        fullNameLabel.text = ((athlete?.firstName)! + " " + (athlete?.lastName)!) 
+
+        fullNameLabel.text = ((athlete?.firstName)! + " " + (athlete?.lastName)!)
         // Do any additional setup after loading the view.
     }
 
@@ -26,7 +26,6 @@ class AthleteDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
