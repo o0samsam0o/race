@@ -15,6 +15,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     private var filterType = "all"
     private var fetchedResultsController: NSFetchedResultsController<Athlete>!
+    private var athlete: Athlete!
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -50,7 +51,10 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         request.sortDescriptors = [sort]
         
         do {
-            fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                                  managedObjectContext: context,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
             try fetchedResultsController.performFetch()
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -105,22 +109,25 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected cell #\(indexPath.row)!")
+        athlete = fetchedResultsController.object(at: indexPath)
+        
+        performSegue(withIdentifier: "showAthleteDetailSegue", sender: self)
+    }
     
     
     
-    
-    
-    
-    
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showAthleteDetailSegue" {
+                let advc = segue.destination as! AthleteDetailViewController
+                advc.athlete = athlete
+        }
     }
-    */
+    
     
     
     //MARK - Add or delete some Testdata

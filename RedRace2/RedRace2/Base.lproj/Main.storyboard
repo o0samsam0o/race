@@ -144,29 +144,45 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uWo-Ax-5DA"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz"/>
+                    <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbN-IR-63b"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Exp-ft-oEX" id="0cj-ra-mjW"/>
+                        <segue destination="YsD-MU-XtI" kind="show" identifier="showAthleteDetailSegue" id="HLU-b8-nMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vo5-X5-1V5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1234.4000000000001" y="654.42278860569718"/>
         </scene>
-        <!--View Controller-->
+        <!--Athlete Detail View Controller-->
         <scene sceneID="K4Q-MA-j7a">
             <objects>
-                <viewController id="YsD-MU-XtI" sceneMemberID="viewController">
+                <viewController id="YsD-MU-XtI" customClass="AthleteDetailViewController" customModule="RedRace2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aUK-4T-rCU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZT-hu-wQl">
+                                <rect key="frame" x="77" y="300" width="220" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="fullNameLabel"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="41l-IB-laX"/>
                     </view>
+                    <connections>
+                        <outlet property="fullNameLabel" destination="9ZT-hu-wQl" id="7Oa-te-q6U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCG-EE-yY7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2102" y="657"/>
+            <point key="canvasLocation" x="2101.5999999999999" y="656.22188905547227"/>
         </scene>
         <!--Item-->
         <scene sceneID="ASP-Gg-5Ab">
