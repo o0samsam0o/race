@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AthleteDetailViewController: UIViewController {
+class AthleteDetailViewController: UIViewController, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -24,9 +25,8 @@ class AthleteDetailViewController: UIViewController {
         } else {
         }
         
-        // image properties
-        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
-        
+        sizeImage()
+        // tap image
         profileImage.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(addProfileImage))
         profileImage.addGestureRecognizer(tapRecognizer)
@@ -37,15 +37,38 @@ class AthleteDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func sizeImage(){
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.clipsToBounds = true
+    }
+    
     @objc func addProfileImage(recognizer: UITapGestureRecognizer){
         print("image tapped")
         openImagePicker()
     }
     
     func openImagePicker() {
-        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
-
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.contentMode = .scaleAspectFill
+        profileImage.image = chosenImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+   
     /*
     // MARK: - Navigation
 
