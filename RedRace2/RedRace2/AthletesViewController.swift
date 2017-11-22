@@ -85,9 +85,17 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     
-    @IBAction func saveAthleteDetails(_ sender: UIStoryboardSegue) {
+    // MARK : - Unwind Segues
+    
+    @IBAction func saveAndUnwindFromAthletesDetailVC(_ sender: UIStoryboardSegue) {
 
     }
+    
+    @IBAction func cancelAndUnwindFromAthletesDetailVC(_ sender: UIStoryboardSegue) {
+        
+    }
+    
+    // MARK : - TableView
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -118,10 +126,25 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         print("You selected cell #\(indexPath.row)!")
         athlete = fetchedResultsController.object(at: indexPath)
         
-        performSegue(withIdentifier: "showAthleteDetailSegue", sender: self)
+        performSegue(withIdentifier: "showAthleteDetailSegue", sender: self) 
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete) {
+            context.delete(fetchedResultsController.object(at: indexPath))
+            saveRecords()
+            fetchData()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
     
     // MARK: - Navigation
 
@@ -136,7 +159,15 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // MARK: - Core Data Functions
     
+    func saveRecords(){
+        do {
+            try context.save()
+        } catch {
+            print("error : \(error)")
+        }
+    }
     
     //MARK - Add or delete some Testdata
     

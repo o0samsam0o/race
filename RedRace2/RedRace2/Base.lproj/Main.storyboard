@@ -177,10 +177,14 @@
                         <viewLayoutGuide key="safeArea" id="41l-IB-laX"/>
                     </view>
                     <navigationItem key="navigationItem" id="vbE-nx-fbV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8eT-Xx-hqG"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8eT-Xx-hqG">
+                            <connections>
+                                <segue destination="3kO-6P-5dF" kind="unwind" unwindAction="cancelAndUnwindFromAthletesDetailVC:" id="zvk-tm-i9R"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="eNd-kT-VoO">
                             <connections>
-                                <segue destination="3kO-6P-5dF" kind="unwind" unwindAction="saveAthleteDetails:" id="xi4-GV-aVq"/>
+                                <segue destination="3kO-6P-5dF" kind="unwind" unwindAction="saveAndUnwindFromAthletesDetailVC:" id="2Fj-8Z-EjT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
