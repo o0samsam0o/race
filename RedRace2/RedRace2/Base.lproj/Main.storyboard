@@ -145,7 +145,11 @@
                         <viewLayoutGuide key="safeArea" id="uWo-Ax-5DA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbN-IR-63b"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbN-IR-63b">
+                            <connections>
+                                <segue destination="IVU-5X-SzT" kind="presentation" identifier="AddNewAthleteSegue" id="RfK-zB-BEg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Exp-ft-oEX" id="0cj-ra-mjW"/>
@@ -236,4 +240,7 @@
             <point key="canvasLocation" x="2062" y="654"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RfK-zB-BEg"/>
+    </inferredMetricsTieBreakers>
 </document>

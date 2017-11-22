@@ -13,13 +13,15 @@ class AthleteDetailViewController: UIViewController {
     
     @IBOutlet weak var fullNameLabel: UILabel!
     var athlete: Athlete?
+    var isNewEntry = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        fullNameLabel.text = ((athlete?.firstName)! + " " + (athlete?.lastName)!)
-        // Do any additional setup after loading the view.
+        if isNewEntry{
+            fullNameLabel.text = "New"
+        } else {
+            fullNameLabel.text = ((athlete?.firstName)! + " " + (athlete?.lastName)!)
+        }
     }
 
     override func didReceiveMemoryWarning() {

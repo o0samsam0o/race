@@ -112,12 +112,12 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             fatalError("Unexpected Index Path")
         }
         
-         let athlete = fetchedResultsController.object(at: indexPath)
+         let person = fetchedResultsController.object(at: indexPath)
         
         // Configure the cell...
-        cell.nameLabel.text = athlete.firstName! + " " + athlete.lastName!
-        cell.ageLabel.text = "\(athlete.age)"
-        cell.genderLabel.text = athlete.gender
+        cell.nameLabel.text = person.firstName! + " " + person.lastName!
+        cell.ageLabel.text = "\(person.age)"
+        cell.genderLabel.text = person.gender
         
         return cell
     }
@@ -151,11 +151,14 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "showAthleteDetailSegue" {
             if let navigationController = segue.destination as? UINavigationController {
-                let athleteDetailViewController = navigationController.topViewController as! AthleteDetailViewController
-                athleteDetailViewController.athlete = athlete
-            }
+                let athleteDetailVC = navigationController.topViewController as! AthleteDetailViewController
+                if segue.identifier == "showAthleteDetailSegue" {
+                    athleteDetailVC.athlete = athlete
+                    athleteDetailVC.isNewEntry = false
+                } else if segue.identifier == "addNewAthleteSegue" {
+                    athleteDetailVC.isNewEntry = true
+                }
         }
     }
     
