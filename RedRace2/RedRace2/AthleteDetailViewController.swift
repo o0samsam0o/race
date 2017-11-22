@@ -10,17 +10,13 @@ import UIKit
 
 class AthleteDetailViewController: UIViewController {
 
-    
-    @IBOutlet weak var fullNameLabel: UILabel!
     var athlete: Athlete?
     var isNewEntry = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if isNewEntry{
-            fullNameLabel.text = "New"
         } else {
-            fullNameLabel.text = ((athlete?.firstName)! + " " + (athlete?.lastName)!)
         }
     }
 
