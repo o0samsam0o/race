@@ -10,6 +10,11 @@ import UIKit
 
 class AthleteDetailViewController: UIViewController {
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var companyNameTextField: UITextField!
+    
     var athlete: Athlete?
     var isNewEntry = true
     
@@ -18,11 +23,27 @@ class AthleteDetailViewController: UIViewController {
         if isNewEntry{
         } else {
         }
+        
+        // image properties
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        
+        profileImage.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(addProfileImage))
+        profileImage.addGestureRecognizer(tapRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func addProfileImage(recognizer: UITapGestureRecognizer){
+        print("image tapped")
+        openImagePicker()
+    }
+    
+    func openImagePicker() {
+        
     }
 
     /*

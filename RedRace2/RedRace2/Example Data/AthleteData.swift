@@ -21,14 +21,11 @@ class AthleteData {
     
     init() {
         // Random name
-        let isLower = arc4random_uniform(10) < 5
         var index = Int(arc4random_uniform(UInt32(firstNames.count)))
-        let first = (isLower ? firstNames[index].lowercased() : firstNames[index])
         index = Int(arc4random_uniform(UInt32(lastNames.count)))
-        let last = (isLower ? lastNames[index].lowercased() : lastNames[index])
-        firstName = first
-        lastName = last
-        gender = genderNames [Int(arc4random_uniform(UInt32(genderNames.count)))].lowercased()
+        firstName = firstNames[index]
+        lastName = lastNames[index]
+        gender = genderNames [Int(arc4random_uniform(UInt32(genderNames.count)))]
         // Random DOb
         dob =  Date().random(unit: Calendar.Component.year, from: -7, upto: -75)!
         id = UUID().uuidString
