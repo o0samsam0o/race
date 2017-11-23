@@ -64,6 +64,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         //deleteAllRecords()
         //addAthletes()
+        //appDelegate.saveContext()
         fetchData()
     }
     
@@ -175,7 +176,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK - Add or delete some Testdata
     
     func addAthletes () {
-        for _ in 0...9 {
+        for _ in 0...20 {
             let data = AthleteData()
             let athlete = Athlete(entity: Athlete.entity(), insertInto: context)
             athlete.firstName = data.firstName
@@ -183,7 +184,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             athlete.birthDate = data.dob as NSDate
             athlete.gender = data.gender
             athlete.id = data.id
-            appDelegate.saveContext()
         }
     }
     
@@ -195,16 +195,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         
         for object in resultData {
             context.delete(object)
-        }
-        
-        do {
-            try context.save()
-            print("saved!")
-            tableView.reloadData()
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        } catch {
-            
         }
     }
     

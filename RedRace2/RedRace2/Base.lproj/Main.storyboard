@@ -121,8 +121,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6sf-fV-1ca">
+                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6sf-fV-1ca">
                                 <rect key="frame" x="16" y="64" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Alle"/>
                                     <segment title="Nur ♀"/>
@@ -138,12 +139,8 @@
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Exp-ft-oEX" firstAttribute="leading" secondItem="o5I-G5-yUP" secondAttribute="leading" id="RuK-7U-QIg"/>
-                            <constraint firstItem="uWo-Ax-5DA" firstAttribute="trailing" secondItem="6sf-fV-1ca" secondAttribute="trailing" constant="16" id="eQg-jj-V8p"/>
-                            <constraint firstItem="Exp-ft-oEX" firstAttribute="top" secondItem="6sf-fV-1ca" secondAttribute="bottom" constant="8" id="euJ-5F-Fy8"/>
-                            <constraint firstItem="6sf-fV-1ca" firstAttribute="leading" secondItem="uWo-Ax-5DA" secondAttribute="leading" constant="16" id="odj-wf-oQv"/>
                             <constraint firstItem="Exp-ft-oEX" firstAttribute="bottom" secondItem="uWo-Ax-5DA" secondAttribute="bottom" id="qK0-to-Ko6"/>
                             <constraint firstAttribute="trailing" secondItem="Exp-ft-oEX" secondAttribute="trailing" id="rzG-Ee-0oS"/>
-                            <constraint firstItem="6sf-fV-1ca" firstAttribute="top" secondItem="uWo-Ax-5DA" secondAttribute="top" id="v5t-xM-GAW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uWo-Ax-5DA"/>
                     </view>
