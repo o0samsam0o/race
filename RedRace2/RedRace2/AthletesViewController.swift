@@ -15,7 +15,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     private var filterType = "all"
     private var fetchedResultsController: NSFetchedResultsController<Athlete>!
-    private var athlete: Athlete!
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -124,10 +123,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell #\(indexPath.row)!")
-        athlete = fetchedResultsController.object(at: indexPath)
-        
-        performSegue(withIdentifier: "showAthleteDetailSegue", sender: self) 
+        performSegue(withIdentifier: "showAthleteDetailSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -147,19 +143,22 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         return .delete
     }
     
+    func addNewAthlete (athlete: Athlete) {
+            print(athlete)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-            if let navigationController = segue.destination as? UINavigationController {
-                let athleteDetailVC = navigationController.topViewController as! AthleteDetailViewController
-                if segue.identifier == "showAthleteDetailSegue" {
-                    athleteDetailVC.athlete = athlete
-                    athleteDetailVC.isNewEntry = false
-                } else if segue.identifier == "addNewAthleteSegue" {
-                    athleteDetailVC.isNewEntry = true
+        if let navigationController = segue.destination as? UINavigationController {
+            let athleteDetailVC = navigationController.topViewController as! AthleteDetailViewController
+            if segue.identifier == "showAthleteDetailSegue" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let object = fetchedResultsController.object(at: indexPath)
+                    athleteDetailVC.athleteDetails = object
                 }
+            }
         }
     }
     

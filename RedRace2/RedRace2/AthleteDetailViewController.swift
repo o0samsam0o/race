@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+import CoreData
+
 
 class AthleteDetailViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -18,15 +20,26 @@ UINavigationControllerDelegate {
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     
-    var athlete: Athlete?
-    var isNewEntry = true
+    var athleteDetails: Athlete? {
+        didSet {
+            //print(athleteDetails)
+            configureView()
+        }
+    }
+    
+    func configureView(){
+        let dateFormatter = getDateFormatter()
+        
+        firstNameTextField?.text = athleteDetails?.firstName
+        lastNameTextField?.text = athleteDetails?.lastName
+            //companyNameTextField.text = detail.company
+        birthdayTextField?.text = dateFormatter.string(for: athleteDetails?.birthDate)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if isNewEntry{
-        } else {
-        }
         
+        configureView()
         sizeImage()
         // tap image
         profileImage.isUserInteractionEnabled = true
@@ -43,7 +56,7 @@ UINavigationControllerDelegate {
     //MARK: - Profile Image Settings
     
     func sizeImage(){
-        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         profileImage.clipsToBounds = true
     }
     
@@ -109,31 +122,38 @@ UINavigationControllerDelegate {
         
         datePicker.datePickerMode = UIDatePickerMode.date
         datePicker.locale = Locale(identifier: "de_DE")
-    
+        
+        if (!(birthdayTextField?.text?.isEmpty)!){
+            datePicker.date = getDateFormatter().date(from: birthdayTextField.text!)!
+        }
+        
         datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
         
         return datePicker
     }
     
     @objc func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = getDateFormatter()
+        birthdayTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func getDateFormatter() -> DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "de_DE")
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         
-        birthdayTextField.text = dateFormatter.string(from: sender.date)
+        return dateFormatter
     }
-    
-    
-   
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            let athletesVC = segue.destination as! AthletesViewController
+            if segue.identifier == "saveSegue" {
+                print("details")
+            }
     }
-    */
+    
 
 }
