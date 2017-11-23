@@ -296,6 +296,7 @@
                         <outlet property="birthdayTextField" destination="3WX-Ld-wgl" id="5FE-5U-sHh"/>
                         <outlet property="companyNameTextField" destination="th4-2A-MjI" id="fC5-iE-cLO"/>
                         <outlet property="firstNameTextField" destination="OGg-Nn-p6p" id="0As-IW-YnT"/>
+                        <outlet property="genderSegmentedControl" destination="gxb-05-Rxn" id="Jkg-UQ-9yu"/>
                         <outlet property="lastNameTextField" destination="7PO-oS-wuZ" id="IUD-xa-w6L"/>
                         <outlet property="profileImage" destination="Wna-LY-UQ1" id="Fhv-mF-RnG"/>
                     </connections>

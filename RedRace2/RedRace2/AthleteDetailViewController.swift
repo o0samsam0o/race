@@ -19,6 +19,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var companyNameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
+    @IBOutlet weak var genderSegmentedControl: UISegmentedControl!
     
     var athleteDetails: Athlete? {
         didSet {
@@ -32,8 +33,14 @@ UINavigationControllerDelegate {
         
         firstNameTextField?.text = athleteDetails?.firstName
         lastNameTextField?.text = athleteDetails?.lastName
-            //companyNameTextField.text = detail.company
+        companyNameTextField?.text = athleteDetails?.companyName
         birthdayTextField?.text = dateFormatter.string(for: athleteDetails?.birthDate)
+        
+        if(athleteDetails?.gender == "♀"){
+            genderSegmentedControl?.selectedSegmentIndex = 0
+        }else {
+            genderSegmentedControl?.selectedSegmentIndex = 1
+        }
     }
     
     override func viewDidLoad() {
