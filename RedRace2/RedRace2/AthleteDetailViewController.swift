@@ -16,6 +16,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var companyNameTextField: UITextField!
+    @IBOutlet weak var birthdayTextField: UITextField!
     
     var athlete: Athlete?
     var isNewEntry = true
@@ -31,6 +32,7 @@ UINavigationControllerDelegate {
         profileImage.isUserInteractionEnabled = true
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(addProfileImage))
         profileImage.addGestureRecognizer(tapRecognizer)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +97,34 @@ UINavigationControllerDelegate {
             print("User has denied the permission.")
         }
     }
+    
+    // MARK: - DatePicker
+    
+    @IBAction func editBirthDate(_ sender: UITextField) {
+        sender.inputView = showDatePicker()
+    }
+    
+    func showDatePicker() -> UIDatePicker{
+        let datePicker:UIDatePicker = UIDatePicker()
+        
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.locale = Locale(identifier: "de_DE")
+    
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
+        
+        return datePicker
+    }
+    
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        birthdayTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    
    
     /*
     // MARK: - Navigation

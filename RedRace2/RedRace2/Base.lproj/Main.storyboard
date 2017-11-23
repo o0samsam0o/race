@@ -176,22 +176,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IZn-2q-qsY">
-                                <rect key="frame" x="16" y="238" width="175" height="28"/>
+                                <rect key="frame" x="16" y="238" width="209" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geschlecht" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGT-I6-7pw">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="uBY-af-DX7"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="uBY-af-DX7"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-05-Rxn">
-                                        <rect key="frame" x="108" y="0.0" width="67" height="29"/>
+                                        <rect key="frame" x="108" y="0.0" width="101" height="29"/>
                                         <segments>
-                                            <segment title="♀"/>
-                                            <segment title="♂"/>
+                                            <segment title="♀" width="50"/>
+                                            <segment title="♂" width="50"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>
@@ -199,10 +199,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IXV-Hd-6vC">
                                 <rect key="frame" x="16" y="92" width="343" height="100"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wna-LY-UQ1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wna-LY-UQ1">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="ua8-pX-ec4"/>
@@ -215,19 +214,19 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vorname" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OGg-Nn-p6p">
                                                 <rect key="frame" x="0.0" y="0.0" width="235" height="28"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nachname" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7PO-oS-wuZ">
                                                 <rect key="frame" x="0.0" y="36" width="235" height="28"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="family-name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firma" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="th4-2A-MjI">
                                                 <rect key="frame" x="0.0" y="72" width="235" height="28"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" textContentType="organization"/>
                                             </textField>
                                         </subviews>
@@ -249,7 +248,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geburtstag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hm4-5g-0ew">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="X10-ez-j3U"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="X10-ez-j3U"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -261,6 +260,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="editBirthDate:" destination="YsD-MU-XtI" eventType="editingDidBegin" id="OIy-YC-Dp5"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -291,6 +293,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="birthdayTextField" destination="3WX-Ld-wgl" id="5FE-5U-sHh"/>
                         <outlet property="companyNameTextField" destination="th4-2A-MjI" id="fC5-iE-cLO"/>
                         <outlet property="firstNameTextField" destination="OGg-Nn-p6p" id="0As-IW-YnT"/>
                         <outlet property="lastNameTextField" destination="7PO-oS-wuZ" id="IUD-xa-w6L"/>
