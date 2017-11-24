@@ -13,8 +13,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var filterType = "all"
-    
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -35,8 +33,8 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         /*
-        deleteAllRecords()
-        addAthletes()
+        deleteAllData()
+        addTestData()
         appDelegate.saveContext()
         */
     }
@@ -47,15 +45,27 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func sortAthletes(_ sender: UISegmentedControl) {
+        var predicate:NSPredicate?
+        print(sender.selectedSegmentIndex)
+            predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "")
         if sender.selectedSegmentIndex == 0 {
-            filterType = "all"
+            predicate = nil
         }else if sender.selectedSegmentIndex == 1 {
-            filterType = "female"
+            predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♀")
         }else if sender.selectedSegmentIndex == 2 {
-            filterType = "male"
+            predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
         }
         
-        tableView.reloadData()
+        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: "Master")
+        
+        self.fetchedResultsController.fetchRequest.predicate = predicate
+        
+        do {
+            try self.fetchedResultsController.performFetch()
+            tableView.reloadData()
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+        }
     }
     
     // MARK : - Unwind Segues
@@ -126,32 +136,22 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         print(athlete)
     }
     
-    //MARK: - FetchedResultsController
+    //MARK: - Fetched Results Controller
+    
     var fetchedResultsController: NSFetchedResultsController<Athlete> {
+        print("fetch")
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
         
         let fetchRequest: NSFetchRequest<Athlete> = Athlete.fetchRequest()
         
-        // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
-        if filterType == "all" {
-            
-        } else if filterType == "female" {
-            fetchRequest.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♀")
-        } else if filterType == "male" {
-            fetchRequest	.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
-        }
-        
-        // Edit the sort key as appropriate.
         let sort = NSSortDescriptor(key: #keyPath(Athlete.lastName), ascending:true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
         
         fetchRequest.sortDescriptors = [sort]
         
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: "Master")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
@@ -222,7 +222,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     /*
     //MARK - Add or delete some Testdata
     
-    func addAthletes () {
+    func addTestData () {
         for _ in 0...20 {
             let data = AthleteData()
             let athlete = Athlete(entity: Athlete.entity(), insertInto: context)
@@ -234,7 +234,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func deleteAllRecords() {
+    func deleteAllData() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Athlete")
         
         let result = try? context.fetch(fetchRequest)
