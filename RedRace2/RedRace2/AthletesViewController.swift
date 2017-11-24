@@ -14,7 +14,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     private var filterType = "all"
-    private var fetchedResultsController: NSFetchedResultsController<Athlete>!
     
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -32,32 +31,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
     }
-    
-    fileprivate func fetchData() {
-        let request = Athlete.fetchRequest() as NSFetchRequest<Athlete>
-        
-        //let sort = NSSortDescriptor(keyPath: \Friend.name, ascending: true)
-        if filterType == "all" {
-            
-        } else if filterType == "female" {
-            request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♀")
-        } else if filterType == "male" {
-            request.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
-        }
-        
-        let sort = NSSortDescriptor(key: #keyPath(Athlete.lastName), ascending:true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
-        request.sortDescriptors = [sort]
-        
-        do {
-            fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                                  managedObjectContext: context,
-                                                                  sectionNameKeyPath: nil,
-                                                                  cacheName: nil)
-            try fetchedResultsController.performFetch()
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,7 +39,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         addAthletes()
         appDelegate.saveContext()
         */
-        fetchData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,7 +55,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             filterType = "male"
         }
         
-        fetchData()
         tableView.reloadData()
     }
     
@@ -100,7 +71,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let athletes = fetchedResultsController.fetchedObjects else {return 0}
+        guard let athletes = self.fetchedResultsController.fetchedObjects else {return 0}
         return athletes.count
     }
 
@@ -109,17 +80,17 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             fatalError("Unexpected Index Path")
         }
         
-         let person = fetchedResultsController.object(at: indexPath)
+         let person = self.fetchedResultsController.object(at: indexPath)
         
-        configureCell(cell: cell, person: person)
+        configureCell(cell, withAthlete: person)
         
         return cell
     }
     
-    func configureCell(cell: AthleteCell, person: Athlete) {
-        cell.nameLabel.text = person.firstName! + " " + person.lastName!
-        cell.ageLabel.text = "\(person.age)"
-        cell.genderLabel.text = person.gender
+    func configureCell(_ cell: AthleteCell, withAthlete athlete: Athlete) {
+        cell.nameLabel.text = athlete.firstName! + " " + athlete.lastName!
+        cell.ageLabel.text = "\(athlete.age)"
+        cell.genderLabel.text = athlete.gender
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -132,10 +103,18 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete) {
-            context.delete(fetchedResultsController.object(at: indexPath))
-            saveRecords()
-            fetchData()
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            if editingStyle == .delete {
+                context.delete(self.fetchedResultsController.object(at: indexPath))
+                
+                do {
+                    try context.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nserror = error as NSError
+                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+            }
         }
     }
     
@@ -146,6 +125,84 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     func addOrUpdateAthlete (athlete: Athlete) {
         print(athlete)
     }
+    
+    //MARK: - FetchedResultsController
+    var fetchedResultsController: NSFetchedResultsController<Athlete> {
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+        }
+        
+        let fetchRequest: NSFetchRequest<Athlete> = Athlete.fetchRequest()
+        
+        // Set the batch size to a suitable number.
+        fetchRequest.fetchBatchSize = 20
+        
+        if filterType == "all" {
+            
+        } else if filterType == "female" {
+            fetchRequest.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♀")
+        } else if filterType == "male" {
+            fetchRequest	.predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
+        }
+        
+        // Edit the sort key as appropriate.
+        let sort = NSSortDescriptor(key: #keyPath(Athlete.lastName), ascending:true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        
+        fetchRequest.sortDescriptors = [sort]
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: "Master")
+        aFetchedResultsController.delegate = self
+        _fetchedResultsController = aFetchedResultsController
+        
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        return _fetchedResultsController!
+    }
+    
+    var _fetchedResultsController: NSFetchedResultsController<Athlete>? = nil
+
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            return
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            self.configureCell(tableView.cellForRow(at: indexPath!)! as! AthleteCell, withAthlete: anObject as! Athlete)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+    
     
     // MARK: - Navigation
 
@@ -159,16 +216,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
                     athleteDetailVC.athleteDetails = object
                 }
             }
-        }
-    }
-    
-    // MARK: - Core Data Functions
-    
-    func saveRecords(){
-        do {
-            try context.save()
-        } catch {
-            print("error : \(error)")
         }
     }
     
