@@ -27,7 +27,7 @@ UINavigationControllerDelegate {
         }
     }
     
-    var moc:NSManagedObjectContext!
+    var context:NSManagedObjectContext!
     
     func configureView(){
         let dateFormatter = getDateFormatter()
@@ -47,7 +47,7 @@ UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         configureView()
         sizeImage()
@@ -165,8 +165,8 @@ UINavigationControllerDelegate {
     }
     
     func saveAthleteDetails() {
-        if athleteDetails == nil { // create a new athlete
-            let newItem = Athlete(context: moc)
+        if athleteDetails == nil { // create new athlete
+            let newItem = Athlete(context: context)
             newItem.id = AthleteData().id
             newItem.firstName = firstNameTextField.text
             newItem.lastName = lastNameTextField.text
@@ -180,7 +180,7 @@ UINavigationControllerDelegate {
         }
         
         do {
-            try moc.save()
+            try context.save()
         }catch {
             print(error)
         }
