@@ -76,7 +76,7 @@
                                     <segment title="Nur ♀"/>
                                     <segment title="Nur ♂"/>
                                 </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="sortAthletes:" destination="fjD-dd-E9J" eventType="valueChanged" id="VvG-wn-z1t"/>
                                 </connections>
@@ -152,9 +152,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbN-IR-63b">
-                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="IVU-5X-SzT" kind="presentation" identifier="AddNewAthleteSegue" id="RfK-zB-BEg"/>
+                                <segue destination="IVU-5X-SzT" kind="presentation" identifier="addNewAthleteSegue" id="RfK-zB-BEg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -176,7 +175,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IZn-2q-qsY">
-                                <rect key="frame" x="16" y="238" width="209" height="28"/>
+                                <rect key="frame" x="16" y="238" width="247" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geschlecht" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGT-I6-7pw">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
@@ -187,11 +186,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-05-Rxn">
-                                        <rect key="frame" x="108" y="0.0" width="101" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-05-Rxn">
+                                        <rect key="frame" x="108" y="0.0" width="139" height="29"/>
                                         <segments>
-                                            <segment title="♀" width="50"/>
-                                            <segment title="♂" width="50"/>
+                                            <segment title="weiblich"/>
+                                            <segment title="männlich"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>

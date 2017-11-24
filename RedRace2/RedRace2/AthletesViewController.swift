@@ -61,9 +61,11 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //deleteAllRecords()
-        //addAthletes()
-        //appDelegate.saveContext()
+        /*
+        deleteAllRecords()
+        addAthletes()
+        appDelegate.saveContext()
+        */
         fetchData()
     }
     
@@ -114,12 +116,15 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         
          let person = fetchedResultsController.object(at: indexPath)
         
-        // Configure the cell...
+        configureCell(cell: cell, person: person)
+        
+        return cell
+    }
+    
+    func configureCell(cell: AthleteCell, person: Athlete) {
         cell.nameLabel.text = person.firstName! + " " + person.lastName!
         cell.ageLabel.text = "\(person.age)"
         cell.genderLabel.text = person.gender
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,8 +148,8 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         return .delete
     }
     
-    func addNewAthlete (athlete: Athlete) {
-            print(athlete)
+    func addOrUpdateAthlete (athlete: Athlete) {
+        print(athlete)
     }
     
     // MARK: - Navigation
@@ -158,6 +163,10 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
                     let object = fetchedResultsController.object(at: indexPath)
                     athleteDetailVC.athleteDetails = object
                 }
+            } else if segue.identifier == "addNewAthleteSegue" {
+                let data = AthleteData()
+                athleteDetailVC.athleteDetails = Athlete(entity: Athlete.entity(), insertInto: context)
+                athleteDetailVC.athleteDetails?.id = data.id
             }
         }
     }
