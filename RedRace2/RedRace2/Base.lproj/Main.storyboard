@@ -282,12 +282,12 @@
                     <navigationItem key="navigationItem" id="vbE-nx-fbV">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8eT-Xx-hqG">
                             <connections>
-                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="cancelSegue" unwindAction="cancelAndUnwindFromAthletesDetailVC:" id="zvk-tm-i9R"/>
+                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="cancelSegue" unwindAction="unwindFromAthletesDetailVC:" id="0Y7-zh-ZLf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="eNd-kT-VoO">
                             <connections>
-                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="saveSegue" unwindAction="saveAndUnwindFromAthletesDetailVC:" id="2Fj-8Z-EjT"/>
+                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="saveSegue" unwindAction="unwindFromAthletesDetailVC:" id="wra-Aw-ZcM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

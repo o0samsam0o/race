@@ -89,12 +89,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK : - Unwind Segues
     
-    @IBAction func saveAndUnwindFromAthletesDetailVC(_ sender: UIStoryboardSegue) {
-
-    }
-    
-    @IBAction func cancelAndUnwindFromAthletesDetailVC(_ sender: UIStoryboardSegue) {
-        
+    @IBAction func unwindFromAthletesDetailVC(_ sender: UIStoryboardSegue) {
     }
     
     // MARK : - TableView
@@ -163,10 +158,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
                     let object = fetchedResultsController.object(at: indexPath)
                     athleteDetailVC.athleteDetails = object
                 }
-            } else if segue.identifier == "addNewAthleteSegue" {
-                let data = AthleteData()
-                athleteDetailVC.athleteDetails = Athlete(entity: Athlete.entity(), insertInto: context)
-                athleteDetailVC.athleteDetails?.id = data.id
             }
         }
     }
@@ -181,6 +172,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    /*
     //MARK - Add or delete some Testdata
     
     func addAthletes () {
@@ -205,5 +197,5 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             context.delete(object)
         }
     }
-    
+    */
 }
