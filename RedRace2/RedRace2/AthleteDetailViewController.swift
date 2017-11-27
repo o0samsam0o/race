@@ -23,10 +23,11 @@ UINavigationControllerDelegate {
     
     var athleteDetails: Athlete? {
         didSet {
-            //print(athleteDetails)
             configureView()
         }
     }
+    
+    var context:NSManagedObjectContext!
     
     func configureView(){
         let dateFormatter = getDateFormatter()
@@ -45,6 +46,8 @@ UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         configureView()
         sizeImage()
@@ -156,11 +159,32 @@ UINavigationControllerDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            let athletesVC = segue.destination as! AthletesViewController
-            if segue.identifier == "saveSegue" {
-                print("details")
-            }
+        if segue.identifier == "saveSegue" {
+            saveAthleteDetails()
+        }
     }
     
-
+    func saveAthleteDetails() {
+        if athleteDetails == nil { // create new athlete
+            let newItem = Athlete(context: context)
+            newItem.id = AthleteData().id
+            newItem.firstName = firstNameTextField.text
+            newItem.lastName = lastNameTextField.text
+            newItem.companyName = companyNameTextField.text
+            newItem.birthDate = getDateFormatter().date(from: birthdayTextField.text!) as NSDate?
+        } else {// update athlete
+            athleteDetails?.firstName = firstNameTextField.text
+            athleteDetails?.lastName = lastNameTextField.text
+            athleteDetails?.companyName = companyNameTextField.text
+            athleteDetails?.birthDate = getDateFormatter().date(from: birthdayTextField.text!) as NSDate?
+        }
+        
+        do {
+            try context.save()
+        }catch {
+            print(error)
+        }
+    }
+    
+    
 }

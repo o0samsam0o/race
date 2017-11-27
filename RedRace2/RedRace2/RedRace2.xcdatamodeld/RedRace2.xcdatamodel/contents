@@ -7,6 +7,7 @@
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
     </entity>
@@ -30,7 +31,7 @@
         <relationship name="startingGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="race" inverseEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Athlete" positionX="-2" positionY="-63" width="128" height="165"/>
+        <element name="Athlete" positionX="-2" positionY="-63" width="128" height="180"/>
         <element name="Group" positionX="-207" positionY="155" width="128" height="105"/>
         <element name="Participant" positionX="-2" positionY="155" width="128" height="120"/>
         <element name="Race" positionX="-209" positionY="-49" width="128" height="105"/>

@@ -147,7 +147,7 @@
                     <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbN-IR-63b">
                             <connections>
-                                <segue destination="IVU-5X-SzT" kind="presentation" identifier="AddNewAthleteSegue" id="RfK-zB-BEg"/>
+                                <segue destination="IVU-5X-SzT" kind="presentation" identifier="addNewAthleteSegue" id="RfK-zB-BEg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -169,7 +169,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IZn-2q-qsY">
-                                <rect key="frame" x="16" y="238" width="209" height="28"/>
+                                <rect key="frame" x="16" y="238" width="247" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geschlecht" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGT-I6-7pw">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
@@ -180,11 +180,11 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-05-Rxn">
-                                        <rect key="frame" x="108" y="0.0" width="101" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gxb-05-Rxn">
+                                        <rect key="frame" x="108" y="0.0" width="139" height="29"/>
                                         <segments>
-                                            <segment title="♀" width="50"/>
-                                            <segment title="♂" width="50"/>
+                                            <segment title="weiblich"/>
+                                            <segment title="männlich"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>
@@ -276,12 +276,12 @@
                     <navigationItem key="navigationItem" id="vbE-nx-fbV">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8eT-Xx-hqG">
                             <connections>
-                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="cancelSegue" unwindAction="cancelAndUnwindFromAthletesDetailVC:" id="zvk-tm-i9R"/>
+                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="cancelSegue" unwindAction="unwindFromAthletesDetailVC:" id="0Y7-zh-ZLf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="eNd-kT-VoO">
                             <connections>
-                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="saveSegue" unwindAction="saveAndUnwindFromAthletesDetailVC:" id="2Fj-8Z-EjT"/>
+                                <segue destination="3kO-6P-5dF" kind="unwind" identifier="saveSegue" unwindAction="unwindFromAthletesDetailVC:" id="wra-Aw-ZcM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

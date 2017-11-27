@@ -25,4 +25,6 @@ extension Athlete {
     @NSManaged public var weight: NSDecimalNumber?
     @NSManaged public var id: String?
     @NSManaged public var companyName: String?
+    @NSManaged public var image: NSData?
+
 }
