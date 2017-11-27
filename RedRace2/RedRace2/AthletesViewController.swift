@@ -46,8 +46,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func sortAthletes(_ sender: UISegmentedControl) {
         var predicate:NSPredicate?
-        print(sender.selectedSegmentIndex)
-            predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "")
         if sender.selectedSegmentIndex == 0 {
             predicate = nil
         }else if sender.selectedSegmentIndex == 1 {
@@ -55,8 +53,6 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         }else if sender.selectedSegmentIndex == 2 {
             predicate = NSPredicate(format: "gender CONTAINS[cd] %@", "♂")
         }
-        
-        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: "Master")
         
         self.fetchedResultsController.fetchRequest.predicate = predicate
         
@@ -90,7 +86,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
             fatalError("Unexpected Index Path")
         }
         
-         let person = self.fetchedResultsController.object(at: indexPath)
+        let person = self.fetchedResultsController.object(at: indexPath)
         
         configureCell(cell, withAthlete: person)
         
@@ -131,15 +127,10 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
     }
-    
-    func addOrUpdateAthlete (athlete: Athlete) {
-        print(athlete)
-    }
-    
+
     //MARK: - Fetched Results Controller
     
     var fetchedResultsController: NSFetchedResultsController<Athlete> {
-        print("fetch")
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
@@ -152,7 +143,7 @@ class AthletesViewController: UIViewController, UITableViewDelegate, UITableView
         
         fetchRequest.sortDescriptors = [sort]
         
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         

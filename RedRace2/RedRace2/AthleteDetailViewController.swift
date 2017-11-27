@@ -71,7 +71,6 @@ UINavigationControllerDelegate {
     }
     
     @objc func addProfileImage(recognizer: UITapGestureRecognizer){
-        print("image tapped")
         checkPermission()
         openImagePicker()
     }
