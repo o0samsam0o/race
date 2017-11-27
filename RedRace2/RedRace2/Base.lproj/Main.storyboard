@@ -66,27 +66,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6sf-fV-1ca">
-                                <rect key="frame" x="16" y="64" width="343" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="CXL-MW-jnf"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Alle"/>
-                                    <segment title="Nur ♀"/>
-                                    <segment title="Nur ♂"/>
-                                </segments>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="sortAthletes:" destination="fjD-dd-E9J" eventType="valueChanged" id="VvG-wn-z1t"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Exp-ft-oEX">
-                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="567" id="dlb-X0-wKt"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="o8l-1Q-qmy" customClass="AthleteCell" customModule="RedRace2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
@@ -122,9 +104,9 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="29j-rQ-BZY" firstAttribute="top" secondItem="hfO-ci-CsD" secondAttribute="topMargin" id="2r2-SC-zW5"/>
-                                                <constraint firstItem="29j-rQ-BZY" firstAttribute="leading" secondItem="hfO-ci-CsD" secondAttribute="leadingMargin" id="Hal-aD-GiV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="29j-rQ-BZY" secondAttribute="trailing" id="LHu-py-S2M"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="29j-rQ-BZY" secondAttribute="trailing" id="TLY-b4-4pb"/>
+                                                <constraint firstItem="29j-rQ-BZY" firstAttribute="top" secondItem="hfO-ci-CsD" secondAttribute="topMargin" id="Y5j-O0-mPX"/>
+                                                <constraint firstItem="29j-rQ-BZY" firstAttribute="leading" secondItem="hfO-ci-CsD" secondAttribute="leadingMargin" id="jny-IY-d2b"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="Cell"/>
@@ -136,23 +118,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6sf-fV-1ca">
+                                <rect key="frame" x="16" y="74" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Alle"/>
+                                    <segment title="Nur ♀"/>
+                                    <segment title="Nur ♂"/>
+                                </segments>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="sortAthletes:" destination="fjD-dd-E9J" eventType="valueChanged" id="VvG-wn-z1t"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Exp-ft-oEX" firstAttribute="top" secondItem="6sf-fV-1ca" secondAttribute="bottom" constant="8" id="497-kI-OgU"/>
-                            <constraint firstItem="6sf-fV-1ca" firstAttribute="top" secondItem="uWo-Ax-5DA" secondAttribute="top" id="Jxh-X1-ShK"/>
-                            <constraint firstItem="Exp-ft-oEX" firstAttribute="leading" secondItem="o5I-G5-yUP" secondAttribute="leading" id="RuK-7U-QIg"/>
-                            <constraint firstItem="uWo-Ax-5DA" firstAttribute="trailing" secondItem="6sf-fV-1ca" secondAttribute="trailing" constant="16" id="TpR-r6-F8W"/>
-                            <constraint firstItem="6sf-fV-1ca" firstAttribute="leading" secondItem="uWo-Ax-5DA" secondAttribute="leading" constant="16" id="nFw-3q-N03"/>
-                            <constraint firstItem="Exp-ft-oEX" firstAttribute="bottom" secondItem="uWo-Ax-5DA" secondAttribute="bottom" id="qK0-to-Ko6"/>
-                            <constraint firstAttribute="trailing" secondItem="Exp-ft-oEX" secondAttribute="trailing" id="rzG-Ee-0oS"/>
+                            <constraint firstItem="6sf-fV-1ca" firstAttribute="leading" secondItem="uWo-Ax-5DA" secondAttribute="leading" constant="16" id="Fhy-2n-v4m"/>
+                            <constraint firstItem="6sf-fV-1ca" firstAttribute="top" secondItem="uWo-Ax-5DA" secondAttribute="top" constant="10" id="IZr-OQ-Nvp"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="leading" secondItem="uWo-Ax-5DA" secondAttribute="leading" id="JRu-nn-0Zy"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="trailing" secondItem="uWo-Ax-5DA" secondAttribute="trailing" id="llK-3B-hpz"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="bottom" secondItem="uWo-Ax-5DA" secondAttribute="bottom" id="nAD-Zj-hJT"/>
+                            <constraint firstItem="uWo-Ax-5DA" firstAttribute="trailing" secondItem="6sf-fV-1ca" secondAttribute="trailing" constant="16" id="wVq-4t-eLN"/>
+                            <constraint firstItem="Exp-ft-oEX" firstAttribute="top" secondItem="6sf-fV-1ca" secondAttribute="bottom" constant="8" id="zaV-3j-nAT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uWo-Ax-5DA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Athleten" id="DWb-sx-wnz">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bbN-IR-63b">
-                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="IVU-5X-SzT" kind="presentation" identifier="AddNewAthleteSegue" id="RfK-zB-BEg"/>
                             </connections>
